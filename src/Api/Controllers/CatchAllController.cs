@@ -10,16 +10,15 @@ using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CatchAllController : ApiController
     {
         [HttpGet]
-        [EnableCors(origins: "http://media.bakken-nilsen.com", headers: "*", methods: "*")]
         public IHttpActionResult Index()
         {
             return GetTvDbApiResponse(Request.RequestUri.PathAndQuery);
         }
-
-
+        
         private IHttpActionResult GetTvDbApiResponse(string relativeUrl, params object[] args)
         {
             string url = string.Format(relativeUrl, args);
