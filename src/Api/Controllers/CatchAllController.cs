@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Xml;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace Api.Controllers
     public class CatchAllController : ApiController
     {
         [HttpGet]
+        [EnableCors(origins: "http://media.bakken-nilsen.com", headers: "*", methods: "*")]
         public IHttpActionResult Index()
         {
             return GetTvDbApiResponse(Request.RequestUri.PathAndQuery);
